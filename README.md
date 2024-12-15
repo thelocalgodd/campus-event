@@ -17,12 +17,12 @@ Key functionalities include event creation, registration, search capabilities, a
 Test the application using these credentials:
 
 **Admin Account:**
-- Email: admin@campusevents.com
-- Password: admin123
+- Email: sharon01@admin.com
+- Password: password123
 
 **User Account:**
-- Email: user@campusevents.com
-- Password: user123
+- Email: spencer@example.com
+- Password: password123
 
 ---
 
@@ -36,10 +36,10 @@ Test the application using these credentials:
 ### Event Management
 - [x] Event Creation
 - [x] Event Editing
-- [x] Event Deletion
 - [x] Event Search & Filtering
 - [x] Category Management
-
+- [x] Event Deletion
+  
 ### Interactive Features
 - [x] Event Registration/RSVP
 - [x] Real-time Notifications
@@ -65,8 +65,8 @@ Test the application using these credentials:
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-username/campus-event-hub.git
-   cd campus-event-hub
+   git clone https://github.com/one-five-two/campus-event.git
+   cd campus-event
    ```
 
 2. **Install Dependencies**
