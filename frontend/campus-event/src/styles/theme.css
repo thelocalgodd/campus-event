@@ -1,0 +1,139 @@
+/* Theme Colors */
+:root {
+  --navy: #1a365d;
+  --navy-dark: #0f2442;
+  --navy-light: #2c4f8c;
+  --sky-blue: #87CEEB;
+  --sky-blue-dark: #5CA1C7;
+  --sky-blue-light: #B7E4F7;
+  --sky-blue-lighter: #e3f2fd;
+  --text-color: #1a365d;
+}
+
+/* Global Styles */
+body {
+  background-color: var(--sky-blue-lighter);
+  color: var(--navy);
+}
+
+/* Navigation */
+.navbar {
+  background-color: var(--navy) !important;
+  color: var(--sky-blue-light) !important;
+}
+
+.nav-links a {
+  color: var(--sky-blue-light) !important;
+}
+
+.nav-links a:hover {
+  color: var(--sky-blue) !important;
+}
+
+/* Buttons */
+.btn.primary {
+  background-color: var(--navy) !important;
+  color: var(--sky-blue-light) !important;
+  border-color: var(--navy) !important;
+}
+
+.btn.primary:hover {
+  background-color: var(--navy-dark) !important;
+  border-color: var(--navy-dark) !important;
+}
+
+.btn.secondary {
+  background-color: var(--sky-blue) !important;
+  color: var(--navy) !important;
+  border-color: var(--sky-blue) !important;
+}
+
+.btn.secondary:hover {
+  background-color: var(--sky-blue-dark) !important;
+}
+
+/* Forms */
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background-color: var(--sky-blue-lighter) !important;
+  border-color: var(--navy-light) !important;
+  color: var(--navy) !important;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--sky-blue) !important;
+  box-shadow: 0 0 0 2px var(--sky-blue-light) !important;
+}
+
+/* Event Cards */
+.event-card {
+  border-color: var(--navy-light) !important;
+  background-color: var(--sky-blue-lighter) !important;
+}
+
+.event-card:hover {
+  box-shadow: 0 4px 8px rgba(26, 54, 93, 0.1) !important;
+}
+
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--navy) !important;
+}
+
+/* Links */
+a {
+  color: var(--navy) !important;
+}
+
+a:hover {
+  color: var(--sky-blue-dark) !important;
+}
+
+/* Calendar */
+.calendar-grid {
+  background-color: var(--sky-blue-lighter) !important;
+}
+
+.rbc-calendar {
+  background-color: var(--sky-blue-lighter) !important;
+}
+
+/* Form Containers */
+.form-container, 
+.content-container,
+.login-container,
+.register-container {
+  background-color: var(--sky-blue-lighter) !important;
+}
+
+/* Additional Elements */
+.checkbox-label {
+  background-color: var(--sky-blue-light) !important;
+  color: var(--navy) !important;
+}
+
+.checkbox-label:hover {
+  background-color: var(--sky-blue) !important;
+}
+
+/* Modal or Popup backgrounds */
+.modal, 
+.popup,
+.dialog {
+  background-color: var(--sky-blue-lighter) !important;
+}
+
+/* Table backgrounds */
+table, 
+th, 
+td {
+  background-color: var(--sky-blue-lighter) !important;
+}
+
+/* Card backgrounds */
+.card {
+  background-color: var(--sky-blue-lighter) !important;
+} 

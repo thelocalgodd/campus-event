@@ -1,0 +1,25 @@
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Keep your existing utility classes */
+.capitalize {
+  text-transform: capitalize;
+}
+
+/* Keep your existing layout classes */
+.calendar-container {
+  padding: 20px;
+  height: 100vh;
+}
+
+/* ... other layout styles ... */
