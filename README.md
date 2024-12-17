@@ -8,8 +8,8 @@ Key functionalities include event creation, registration, search capabilities, a
 ---
 
 ## Deployment Links
-- Frontend: [Campus Event Hub](https://campus-event-hub.vercel.app)
-- Backend API: [API Endpoint](https://campus-event-hub-api.onrender.com)
+- Frontend: 
+- Backend API: 
 
 ---
 
@@ -59,7 +59,7 @@ Test the application using these credentials:
 ### Prerequisites
 - Node.js (v14 or higher)
 - MongoDB
-- npm or yarn
+- npm
 
 ### Local Setup
 
@@ -107,13 +107,12 @@ Test the application using these credentials:
 ## API Documentation
 
 ### Authentication Endpoints
-![Auth Endpoints](path/to/auth-endpoints-screenshot.png)
+
 
 ### Event Endpoints
-![Event Endpoints](path/to/event-endpoints-screenshot.png)
+
 
 ### User Endpoints
-![User Endpoints](path/to/user-endpoints-screenshot.png)
 
 ---
 
