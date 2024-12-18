@@ -21,8 +21,8 @@
     }
   ],
   "env": {
-    "MONGODB_URI": "@mongodb_uri",
-    "JWT_SECRET": "@jwt_secret",
-    "ADMIN_USERS": "@admin_users"
+    "MONGODB_URI": "${MONGODB_URI}",
+    "JWT_SECRET": "${JWT_SECRET}",
+    "ADMIN_USERS": "${ADMIN_USERS}"
   }
 }
