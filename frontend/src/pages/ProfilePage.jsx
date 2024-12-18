@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
+import React, { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 
 const ProfilePage = () => {
   const { user } = useAuth();
@@ -10,17 +10,17 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchUserEvents = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:5001/api/users/events`, {
+        const token = localStorage.getItem("token");
+        const response = await fetch(`/api/users/events`, {
           headers: {
-            'Authorization': `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
-        
+
         if (!response.ok) {
-          throw new Error('Failed to fetch user events');
+          throw new Error("Failed to fetch user events");
         }
-        
+
         const data = await response.json();
         setUserEvents(data);
       } catch (err) {
@@ -36,30 +36,30 @@ const ProfilePage = () => {
   }, [user]);
 
   const handleCancelRSVP = async (eventId) => {
-    if (!confirm('Are you sure you want to cancel your RSVP?')) {
+    if (!confirm("Are you sure you want to cancel your RSVP?")) {
       return;
     }
 
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5001/api/events/${eventId}/rsvp`, {
-        method: 'DELETE',
+      const token = localStorage.getItem("token");
+      const response = await fetch(`/api/events/${eventId}/rsvp`, {
+        method: "DELETE",
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       if (response.ok) {
         // Remove the event from the list
-        setUserEvents(userEvents.filter(event => event._id !== eventId));
-        alert('RSVP cancelled successfully');
+        setUserEvents(userEvents.filter((event) => event._id !== eventId));
+        alert("RSVP cancelled successfully");
       } else {
         const data = await response.json();
-        alert(data.message || 'Failed to cancel RSVP');
+        alert(data.message || "Failed to cancel RSVP");
       }
     } catch (error) {
-      console.error('Error cancelling RSVP:', error);
-      alert('Failed to cancel RSVP. Please try again.');
+      console.error("Error cancelling RSVP:", error);
+      alert("Failed to cancel RSVP. Please try again.");
     }
   };
 
@@ -92,7 +92,7 @@ const ProfilePage = () => {
             </div>
             <div className="info-group">
               <label>Account Type</label>
-              <p>{user?.isAdmin ? 'Administrator' : 'User'}</p>
+              <p>{user?.isAdmin ? "Administrator" : "User"}</p>
             </div>
           </div>
         </div>
@@ -103,14 +103,16 @@ const ProfilePage = () => {
             <p className="no-events">You haven't RSVP'd to any events yet.</p>
           ) : (
             <div className="events-grid">
-              {userEvents.map(event => (
+              {userEvents.map((event) => (
                 <div key={event._id} className="event-card">
                   <div className="event-image">
-                    {event.imageUrl && <img src={event.imageUrl} alt={event.title} />}
+                    {event.imageUrl && (
+                      <img src={event.imageUrl} alt={event.title} />
+                    )}
                     <div className="event-date">
-                      {new Date(event.date).toLocaleDateString('en-US', { 
-                        month: 'short',
-                        day: 'numeric'
+                      {new Date(event.date).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
                       })}
                     </div>
                   </div>
@@ -120,7 +122,7 @@ const ProfilePage = () => {
                       <span>📍 {event.location}</span>
                       <span>⏰ {event.time}</span>
                     </p>
-                    <button 
+                    <button
                       className="btn secondary"
                       onClick={() => handleCancelRSVP(event._id)}
                     >
@@ -137,4 +139,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage; 
+export default ProfilePage;

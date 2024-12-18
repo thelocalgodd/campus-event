@@ -14,7 +14,7 @@ const EventsPage = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch("http://localhost:5001/api/events");
+      const response = await fetch("/api/events");
       const data = await response.json();
       console.log("Fetched events:", data); // Debug log
       setEvents(data);
@@ -33,17 +33,14 @@ const EventsPage = () => {
     }
 
     try {
-      const response = await fetch(
-        `http://localhost:5001/api/events/${eventId}/rsvp`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({ userId: user.id }),
-        }
-      );
+      const response = await fetch(`/api/events/${eventId}/rsvp`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ userId: user.id }),
+      });
 
       if (response.ok) {
         alert("RSVP successful!");

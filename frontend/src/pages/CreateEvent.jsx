@@ -41,7 +41,7 @@ const CreateEventPage = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5001/api/events", {
+      const response = await fetch("/api/events", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
