@@ -1,65 +1,65 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CreateEventPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    title: '',
-    date: '',
-    time: '',
-    location: '',
-    description: '',
-    category: '',
-    capacity: '',
+    title: "",
+    date: "",
+    time: "",
+    location: "",
+    description: "",
+    category: "",
+    capacity: "",
     isPrivate: false,
-    registrationDeadline: ''
+    registrationDeadline: "",
   });
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   // Add this handler for text inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
   // Add this handler for checkbox
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: checked
+      [name]: checked,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5004/api/events', {
-        method: 'POST',
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:5001/api/events", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       const data = await response.json();
-      console.log('Create event response:', data);
+      console.log("Create event response:", data);
 
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to create event');
+        throw new Error(data.message || "Failed to create event");
       }
 
-      navigate('/events');
+      navigate("/events");
     } catch (error) {
-      console.error('Create event error:', error);
+      console.error("Create event error:", error);
       setError(error.message);
     }
   };
@@ -68,7 +68,7 @@ const CreateEventPage = () => {
     <div className="create-event-container">
       <h1>Create New Event</h1>
       {error && <div className="error-message">{error}</div>}
-      
+
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Title</label>
@@ -177,10 +177,12 @@ const CreateEventPage = () => {
           </label>
         </div>
 
-        <button type="submit" className="btn primary">Create Event</button>
+        <button type="submit" className="btn primary">
+          Create Event
+        </button>
       </form>
     </div>
   );
 };
 
-export default CreateEventPage; 
+export default CreateEventPage;

@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
-import format from 'date-fns/format';
-import parse from 'date-fns/parse';
-import startOfWeek from 'date-fns/startOfWeek';
-import getDay from 'date-fns/getDay';
-import enUS from 'date-fns/locale/en-US';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+import React, { useState, useEffect } from "react";
+import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import format from "date-fns/format";
+import parse from "date-fns/parse";
+import startOfWeek from "date-fns/startOfWeek";
+import getDay from "date-fns/getDay";
+import enUS from "date-fns/locale/en-US";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const locales = {
-  'en-US': enUS
+  "en-US": enUS,
 };
 
 const localizer = dateFnsLocalizer({
@@ -24,7 +24,12 @@ const CalendarView = () => {
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [selectedPreferences, setSelectedPreferences] = useState([]);
   const [preferences] = useState([
-    'academic', 'sports', 'cultural', 'technology', 'workshops', 'social'
+    "academic",
+    "sports",
+    "cultural",
+    "technology",
+    "workshops",
+    "social",
   ]);
 
   useEffect(() => {
@@ -33,18 +38,18 @@ const CalendarView = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch('http://localhost:5003/api/events');
+      const response = await fetch("http://localhost:5001/api/events");
       const data = await response.json();
-      console.log('Raw events data:', data); // Debug log
+      console.log("Raw events data:", data); // Debug log
 
       // Properly format the events for the calendar
-      const formattedEvents = data.map(event => {
+      const formattedEvents = data.map((event) => {
         // Parse the date string
         const eventDate = new Date(event.date);
-        console.log('Event date before formatting:', event.date, eventDate);
+        console.log("Event date before formatting:", event.date, eventDate);
 
         // Parse time (assuming format is "HH:mm" or "HH:mm:ss")
-        const timeArray = event.time.split(':');
+        const timeArray = event.time.split(":");
         const hours = parseInt(timeArray[0]);
         const minutes = parseInt(timeArray[1]);
 
@@ -56,11 +61,11 @@ const CalendarView = () => {
         const endDate = new Date(startDate);
         endDate.setHours(startDate.getHours() + 2);
 
-        console.log('Formatted dates:', {
+        console.log("Formatted dates:", {
           original: event.date,
           time: event.time,
           start: startDate,
-          end: endDate
+          end: endDate,
         });
 
         return {
@@ -70,29 +75,29 @@ const CalendarView = () => {
           end: endDate,
           desc: event.description,
           location: event.location,
-          category: event.category
+          category: event.category,
         };
       });
 
-      console.log('Final formatted events:', formattedEvents);
+      console.log("Final formatted events:", formattedEvents);
       setEvents(formattedEvents);
       setFilteredEvents(formattedEvents);
     } catch (error) {
-      console.error('Error fetching events:', error);
+      console.error("Error fetching events:", error);
     }
   };
 
   useEffect(() => {
     // Test event
     const testEvent = {
-      id: 'test',
-      title: 'Test Event',
+      id: "test",
+      title: "Test Event",
       start: new Date(2024, 1, 20, 14, 30), // February 20, 2024, 14:30
-      end: new Date(2024, 1, 20, 16, 30),   // February 20, 2024, 16:30
-      desc: 'Test Description',
-      location: 'Test Location'
+      end: new Date(2024, 1, 20, 16, 30), // February 20, 2024, 16:30
+      desc: "Test Description",
+      location: "Test Location",
     };
-    
+
     setEvents([testEvent]);
     setFilteredEvents([testEvent]);
   }, []);
@@ -100,7 +105,7 @@ const CalendarView = () => {
   const handleFilterChange = (pref) => {
     let newPreferences;
     if (selectedPreferences.includes(pref)) {
-      newPreferences = selectedPreferences.filter(p => p !== pref);
+      newPreferences = selectedPreferences.filter((p) => p !== pref);
     } else {
       newPreferences = [...selectedPreferences, pref];
     }
@@ -109,7 +114,7 @@ const CalendarView = () => {
     if (newPreferences.length === 0) {
       setFilteredEvents(events);
     } else {
-      const filtered = events.filter(event => 
+      const filtered = events.filter((event) =>
         newPreferences.includes(event.category.toLowerCase())
       );
       setFilteredEvents(filtered);
@@ -133,9 +138,9 @@ const CalendarView = () => {
 
       <div className="content-container">
         <div className="preference-filters">
-          {preferences.map(pref => (
+          {preferences.map((pref) => (
             <label key={pref} className="checkbox-label">
-              <input 
+              <input
                 type="checkbox"
                 checked={selectedPreferences.includes(pref)}
                 onChange={() => handleFilterChange(pref)}
@@ -151,11 +156,11 @@ const CalendarView = () => {
             events={filteredEvents}
             startAccessor="start"
             endAccessor="end"
-            style={{ height: 600, margin: '20px' }}
-            views={['month', 'week', 'day']}
+            style={{ height: 600, margin: "20px" }}
+            views={["month", "week", "day"]}
             defaultView="month"
             components={{
-              event: EventComponent
+              event: EventComponent,
             }}
             popup
             tooltipAccessor={null}
@@ -166,4 +171,4 @@ const CalendarView = () => {
   );
 };
 
-export default CalendarView; 
+export default CalendarView;

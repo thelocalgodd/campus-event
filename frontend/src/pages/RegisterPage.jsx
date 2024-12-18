@@ -1,78 +1,78 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    password: '',
+    fullName: "",
+    email: "",
+    password: "",
     preferences: {
       academic: false,
       sports: false,
       cultural: false,
       technology: false,
       workshops: false,
-      social: false
+      social: false,
     },
-    isAdmin: false
+    isAdmin: false,
   });
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handlePreferenceChange = (e) => {
     const { name, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       preferences: {
         ...prev.preferences,
-        [name]: checked
-      }
+        [name]: checked,
+      },
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    console.log('Submitting registration:', formData);
+    setError("");
+    console.log("Submitting registration:", formData);
 
     try {
-      const response = await fetch('http://localhost:5004/api/auth/register', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5001/api/auth/register", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           fullName: formData.fullName,
           email: formData.email,
           password: formData.password,
-          preferences: formData.preferences
-        })
+          preferences: formData.preferences,
+        }),
       });
 
       const data = await response.json();
-      console.log('Registration response:', data);
+      console.log("Registration response:", data);
 
       if (!response.ok) {
-        throw new Error(data.message || 'Registration failed');
+        throw new Error(data.message || "Registration failed");
       }
 
       // Store token and user data
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
       // Redirect to preferences confirmation or dashboard
-      navigate('/events');
+      navigate("/events");
     } catch (error) {
-      console.error('Registration error:', error);
+      console.error("Registration error:", error);
       setError(error.message);
     }
   };
@@ -83,15 +83,15 @@ const RegisterPage = () => {
         <h1>Create Your Account</h1>
         <p>Join us to stay updated with campus events</p>
       </div>
-      
+
       <div className="content-container">
         <div className="form-container">
           <form className="register-form" onSubmit={handleSubmit}>
             {error && <div className="error-message">{error}</div>}
-            
+
             <div className="form-group">
               <label>Full Name</label>
-              <input 
+              <input
                 type="text"
                 name="fullName"
                 value={formData.fullName}
@@ -103,7 +103,7 @@ const RegisterPage = () => {
 
             <div className="form-group">
               <label>Email</label>
-              <input 
+              <input
                 type="email"
                 name="email"
                 value={formData.email}
@@ -115,7 +115,7 @@ const RegisterPage = () => {
 
             <div className="form-group">
               <label>Password</label>
-              <input 
+              <input
                 type="password"
                 name="password"
                 value={formData.password}
@@ -128,15 +128,17 @@ const RegisterPage = () => {
 
             <div className="form-group">
               <label>Event Preferences</label>
-              <p className="help-text">Select the types of events you're interested in</p>
+              <p className="help-text">
+                Select the types of events you're interested in
+              </p>
               <div className="preferences-grid">
                 {Object.entries({
-                  academic: 'Academic',
-                  sports: 'Sports',
-                  cultural: 'Cultural',
-                  technology: 'Technology',
-                  workshops: 'Workshops',
-                  social: 'Social'
+                  academic: "Academic",
+                  sports: "Sports",
+                  cultural: "Cultural",
+                  technology: "Technology",
+                  workshops: "Workshops",
+                  social: "Social",
                 }).map(([key, label]) => (
                   <label key={key} className="checkbox-label">
                     <input
@@ -151,7 +153,9 @@ const RegisterPage = () => {
               </div>
             </div>
 
-            <button type="submit" className="btn primary">Create Account</button>
+            <button type="submit" className="btn primary">
+              Create Account
+            </button>
           </form>
         </div>
       </div>
@@ -159,4 +163,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage; 
+export default RegisterPage;
