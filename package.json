@@ -1,5 +1,5 @@
 {
-  "name": "event-app",
+  "name": "campus-event-app",
   "version": "1.0.0",
   "scripts": {
     "build:frontend": "cd frontend && npm run build",

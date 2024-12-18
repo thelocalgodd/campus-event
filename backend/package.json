@@ -1,5 +1,5 @@
 {
-  "name": "campus-event",
+  "name": "campus-event-backend",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
