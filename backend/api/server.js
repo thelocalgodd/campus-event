@@ -70,14 +70,15 @@ app.get("/", (req, res) => {
 // Add this before your routes
 app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Successfully connected to MongoDB:", process.env.MONGODB_URI);
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
-    });
   })
   .catch((error) => {
     console.error("MongoDB connection error:", error);
